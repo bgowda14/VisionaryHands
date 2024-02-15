@@ -2,6 +2,8 @@
 #include <Vector.h>
 #include <ArxContainer.h>
 
+using namespace arx;
+
 #define MAX_QUEUE_LENGTH 5
 #define STABILITY_CUTOFF 200
 #define POLL_WAIT_TIME 2000          // in ms
@@ -100,7 +102,7 @@ void replaceBySmallest(SensorReading &to, const SensorReading &from) {
 
 SensorReading history_array[MAX_QUEUE_LENGTH];
 Vector<SensorReading> history(history_array);
-const arx::map<SensorReading, char, 26> mapping {
+const arx::stdx::map<SensorReading, char, 26> mapping {
     {SensorReading{50, 30, 50, 10, 10}, 'a'}, // this kind of thing, but actually
     {SensorReading{0, 0, 0, 0, 30}, 'b'},
     {SensorReading{15, 15, 15, 10, 3}, 'c'},
@@ -170,6 +172,7 @@ void wait(long time) {
   delay(time);
 } // this is assuming a wait function in milliseconds. Arya,
                       // remove this or change as needed
+
 
 char getCharacterOf(const SensorReading &reading) {
   char currentCharacter;
